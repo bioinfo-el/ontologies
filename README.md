@@ -1,3 +1,3 @@
-# ontologies
+# Ontologies
 
-6 ontologies
+6 Ontologies

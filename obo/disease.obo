@@ -403,43 +403,8 @@ synonym: "Lattice Corneal Dystrophy, Gelsolin Type" EXACT []
 synonym: "Familial Amyloidosis, Finnish Type" EXACT []
 
 [Term]
-id: MESH:C000705127
-name: COVID-19 drug treatment
-synonym: "Covid-19 treatment" EXACT []
-synonym: "treatment of Covid-19 virus infection" EXACT []
-synonym: "coronavirus disease-19 drug treatment" EXACT []
-synonym: "coronavirus disease 2019 drug treatment" EXACT []
-
-[Term]
-id: MESH:C000705128
-name: COVID-19 serotherapy
-synonym: "COVID-19 convalescent serum treatment" EXACT []
-synonym: "COVID-19 convalescent plasma treatment" EXACT []
-synonym: "COVID-19 serum therapy" EXACT []
-synonym: "COVID19 hyperimmune globulin therapy" EXACT []
-synonym: "SARS-CoV-2 convalescent sera treatment" EXACT []
-synonym: "SARS-CoV-2 convalescent plasma treatment" EXACT []
-synonym: "convalescent serum treatment for Covid-19" EXACT []
-synonym: "hyperimmune globulin therapy for COVID-19" EXACT []
-synonym: "SARS-CoV-2 convalescent serum treatment" EXACT []
-synonym: "COVID19 serotherapy" EXACT []
-synonym: "Covid-19 convalescent sera treatment" EXACT []
-synonym: "COVID-19 hyperimmune globulin therapy" EXACT []
-synonym: "coronavirus disease-19 serotherapy" EXACT []
-synonym: "COVID19 serum therapy" EXACT []
-synonym: "coronavirus disease 2019 serotherapy" EXACT []
-synonym: "convalescent plasma treatment for Covid-19" EXACT []
-
-[Term]
 id: MESH:C000705207
 name: Brachytelephalangic Chondrodysplasia Punctata
-
-[Term]
-id: MESH:C000705427
-name: Middle East respiratory syndrome vaccine
-synonym: "ChAdOx1 MERS vaccine" EXACT []
-synonym: "Middle East respiratory syndrome vaccine ChAdOx1 MERS" EXACT []
-synonym: "ChAdOx1 MERS" EXACT []
 
 [Term]
 id: MESH:C000705607
@@ -557,38 +522,6 @@ synonym: "vacuolar myelinopathy" EXACT []
 [Term]
 id: MESH:C000717167
 name: rhupus syndrome
-
-[Term]
-id: MESH:C032598
-name: heavy chain disease proteins, human
-
-[Term]
-id: MESH:C041229
-name: IGHM protein, human
-synonym: "BOT heavy chain disease protein, human" EXACT []
-synonym: "immunoglobulin heavy constant mu protein, human" EXACT []
-
-[Term]
-id: MESH:C483996
-name: FOR heavy chain disease protein, human
-synonym: "gamma 1 heavy chain disease protein FOR, human" EXACT []
-
-[Term]
-id: MESH:C483997
-name: Wis heavy-chain disease protein, human
-synonym: "gamma 3 heavy-chain disease protein WIS, human" EXACT []
-synonym: "protein WIS, human" EXACT []
-synonym: "myeloma protein Wis, human" EXACT []
-
-[Term]
-id: MESH:C483999
-name: CHA heavy chain disease protein, human
-synonym: "gamma heavy chain disease protein CHA, human" EXACT []
-
-[Term]
-id: MESH:C484001
-name: RIV immunoglobulin variant protein, human
-synonym: "protein RIV, human" EXACT []
 
 [Term]
 id: MESH:C531598

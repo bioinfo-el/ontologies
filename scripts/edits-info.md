@@ -18,6 +18,7 @@ rm cellosaurus-slim_1.obo
 sed -E 's/(^xref: .*) ! (.*)$/\1 "\2"/' cellosaurus-slim_2.obo > cellosaurus-slim_3.obo
 rm cellosaurus-slim_2.obo
 ```
+run `python insert_mesh_xrefs_into_cvcl.py`
 
 ### Edits done to cl-basic.obo
 Remove this line

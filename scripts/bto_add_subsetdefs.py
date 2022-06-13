@@ -5,7 +5,7 @@ bto = pronto.Ontology("BTO.obo")
 bto.metadata.subsetdefs = frozenset(
     {
         pronto.Subset(name=x, description=x)
-        for x in ["tissue", "cell_type", "cell_line"]
+        for x in ["tissue", "cell_type", "cell_line", "other"]
     }
 )
 cvcl = pronto.Ontology("cellosaurus-slim.obo")
@@ -19,6 +19,10 @@ for term in cvcl.terms():
 
 def is_cellline(term):
     return ("cell line" in term.name) or (term.id in bto_celllines)
+
+
+def is_other(term):
+    return term.name == "robust nucleus of arcopallium"
 
 
 def is_celltype(concept):
@@ -46,6 +50,8 @@ for term in bto.terms():
         term.subsets = frozenset({"cell_line"})
     elif is_celltype(term):
         term.subsets = frozenset({"cell_type"})
+    elif is_other(term):
+        term.subsets = frozenset({"other"})
     else:
         term.subsets = frozenset({"tissue"})
 
@@ -56,6 +62,10 @@ print(
 print(
     "Number of cell type in BTO: ",
     len([term for term in bto.terms() if "cell_type" in term.subsets]),
+)
+print(
+    "Number of others in BTO: ",
+    len([term for term in bto.terms() if "other" in term.subsets]),
 )
 print(
     "Number of tissues in BTO: ",

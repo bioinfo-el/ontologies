@@ -4,23 +4,23 @@ from tqdm import tqdm
 
 distances = {}
 
-diseases = pronto.Ontology(
-    "https://raw.githubusercontent.com/bioinfo-el/ontologies/main/obo/disease.obo"
-)
+# diseases = pronto.Ontology(
+#     "https://raw.githubusercontent.com/bioinfo-el/ontologies/main/obo/disease.obo"
+# )
 # this creates the distance matrix for diseases
-for term in tqdm(diseases.terms()):
-    distances[(term.name, term.name)] = 0
-    for i in range(10):
-        for other in term.superclasses(i):
-            key = (term.name, other.name)
-            if key in distances:
-                continue
-            distances[key] = -1 * i
-        for other in term.subclasses(i):
-            key = (term.name, other.name)
-            if key in distances:
-                continue
-            distances[key] = i
+# for term in tqdm(diseases.terms()):
+#     distances[(term.name, term.name)] = 0
+#     for i in range(10):
+#         for other in term.superclasses(i):
+#             key = (term.name, other.name)
+#             if key in distances:
+#                 continue
+#             distances[key] = -1 * i
+#         for other in term.subclasses(i):
+#             key = (term.name, other.name)
+#             if key in distances:
+#                 continue
+#             distances[key] = i
 
 
 # for BTO, superclasses includes part of and subclass relationships
@@ -115,7 +115,7 @@ def copy_term(og_term):
         "creation_date",
     ]:
         setattr(term, attr, getattr(og_term, attr))
-    for syn in og_term.synonyms:
+    for syn in sorted(og_term.synonyms, key=lambda x: x.description):
         term.add_synonym(syn.description, syn.scope, syn.type)
     term.subsets = og_term.subsets
 
@@ -135,7 +135,7 @@ new_tissues = pronto.Ontology()
 new_tissues.metadata.subsetdefs = frozenset(
     {
         pronto.Subset(name=x, description=x)
-        for x in ["tissue", "cell_type", "cell_line"]
+        for x in ["tissue", "cell_type", "cell_line", "other"]
     }
 )
 new_tissues.metadata.synonymtypedefs = tissues.metadata.synonymtypedefs

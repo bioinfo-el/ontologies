@@ -20,6 +20,7 @@ sed 's/xref: NCBI_TaxID/xref: NCBITaxon/' cellosaurus-slim_1.obo > cellosaurus-s
 rm cellosaurus-slim_1.obo
 sed -E 's/(^xref: .*) ! (.*)$/\1 "\2"/' cellosaurus-slim_2.obo > cellosaurus-slim_3.obo
 rm cellosaurus-slim_2.obo
+mv -i cellosaurus-slim_3.obo cellosaurus-slim_v0.obo
 ```
 run `python insert_mesh_xrefs_into_cvcl.py`
 
@@ -28,6 +29,8 @@ Remove this line
 ```
 xref: A type of interneuron that has two clusters of dendritic branches that originate directly from the soma and extend in opposite directions and axons that form a plexus which spreads widely. Compared to bipolar neurons\, bitufted neurons have branching that occur close to the soma. {xref="PMID:18568015"}
 ```
+
+No edits in May update
 
 ### Edits for CHEBI
 remove this line

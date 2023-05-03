@@ -32,7 +32,7 @@ xref: A type of interneuron that has two clusters of dendritic branches that ori
 
 No edits in May update
 
-### Edits for CHEBI
+### Edits for CHEBI (Outdated since we're not using CHEBI)
 remove this line
 ```
 xref: KEGG:D 2959 
@@ -43,3 +43,63 @@ xref: KEGG:D 2959
 run `bto_add_subset_defs.py`
 
 run `remove_bto_plants.py` and pass it the output of the previous step
+
+### Edits for MESH
+
+Clone this repo `https://github.com/ulikoehler/MeSH-JSON/blob/master/LICENSE`
+
+In `mesh-json.cpp` replace the following two functions with the versions given below
+
+```cpp
+// Function for parsing tree number
+// this is not there in the original source code
+
+Document parseTreeNumberList(const xml_node &treeNumberList) {
+  Document array;
+  array.SetArray();
+  for (const auto &treeNumber : treeNumberList.children("TreeNumber")) {
+    auto treeNumberStr = treeNumber.child_value();
+    // Build JSON
+    Document doc;
+    doc.SetObject(); // Make doc an object !
+    // Add JSON entries
+    doc.AddMember("treeNumber", Value().SetString(treeNumberStr, jsonAlloc),
+                  jsonAlloc);
+    // Add doc to array
+    array.PushBack(doc, jsonAlloc);
+  }
+  return array;
+}
+
+// this function is modified
+Document parseDescriptorRecord(const xml_node &node) {
+  Document doc;
+  doc.SetObject();
+  auto id = node.child("DescriptorUI").child_value();
+  auto name = node.child("DescriptorName").child("String").child_value();
+  auto cls = node.attribute("DescriptorClass").value();
+  // Add JSON entries
+  doc.AddMember("id", Value().SetString(id, jsonAlloc), jsonAlloc);
+  doc.AddMember("name", Value().SetString(name, jsonAlloc), jsonAlloc);
+  doc.AddMember("class", Value().SetInt(boost::lexical_cast<int>(cls)),
+                jsonAlloc);
+  // Parse qualifiers & concepts
+  doc.AddMember("qualifiers",
+                parseQualifierList(node.child("AllowableQualifiersList")),
+                jsonAlloc);
+  doc.AddMember("concepts", parseConceptList(node.child("ConceptList")),
+                jsonAlloc);
+  // Parse tree numbers
+  doc.AddMember("treeNumbers",
+                parseTreeNumberList(node.child("TreeNumberList")), jsonAlloc);
+  return doc;
+}
+```
+
+Run `cmake .` and `make`
+
+Download the MESH XML dump from here https://www.nlm.nih.gov/databases/download/mesh.html
+
+Run `./mesh-json desc2023.gz desc2023.json`
+
+Run `mesh_desc_json_to_format.py`
